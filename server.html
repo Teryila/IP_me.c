@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scholarship</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        header {
+            background-image: url('https://i.imgur.com/YdSWwns.gif');
+            background-size: cover;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+        }
+        input {
+            margin-bottom: 10px;
+            padding: 8px;
+            width: 300px;
+        }
+        button {
+            padding: 8px 16px;
+        }
+        p {
+            margin-top: 10px;
+            color: darkblue;
+        }
+        section h2 {
+            color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Scholarship</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Input Password</h2>
+            <input type="text" id="password" placeholder="Enter password">
+            <button onclick="hashPassword()">Hash</button>
+            <p id="hashedPassword"></p>
+        </section>
+        <section>
+            <h2>Check IP</h2>
+            <input type="text" id="ip" placeholder="Enter IP address">
+            <button onclick="checkIP()">Check</button>
+            <p id="ipLocation"></p>
+        </section>
+    </main>
+
+    <script>
+        function hashPassword() {
+            const password = document.getElementById('password').value;
+            const command = `/data/data/com.termux/files/home/IP_me.c/hash "${password}"`;
+
+            fetch(`http://localhost:8000/?cmd=${encodeURIComponent(command)}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('hashedPassword').innerText = data;
+                });
+        }
+
+        function checkIP() {
+            const ip = document.getElementById('ip').value;
+            const command = `/data/data/com.termux/files/home/IP_me.c/ip "${ip}"`;
+
+            fetch(`http://localhost:8000/?cmd=${encodeURIComponent(command)}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('ipLocation').innerText = data;
+                });
+        }
+    </script>
+</body>
+</html>
+
