@@ -12,6 +12,6 @@
 #Enter http://localhost:8080/ in 
 #the address bar.
 
-#Remember to hast use "python -m http.server 8080" to hast or connect as server locally
+#Remember to hast use "python -m http.server 8080" to host or connect as server locally
 
 # IP_me.c
